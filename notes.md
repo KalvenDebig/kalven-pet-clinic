@@ -38,3 +38,8 @@
 * Details should depend upon abstractions  
 * Important that higher level and lower level objects depend on the same abstract interaction 
 * This is not the same as Dependency Injection - which is how objects obtain dependent objects  
+
+
+## Spring DATA JPA
+JPA is using CRUDRepository  
+Here in this project we can mimic how JPA implement those methods like save(), findByID(), and so on.
