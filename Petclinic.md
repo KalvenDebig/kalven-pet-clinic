@@ -75,6 +75,8 @@ context.getEnvironment().setDefaultProfiles("jpa");
 
 No configuration needed incase you with to use the default profile (jpa)  
 
+## Maven Release Plugin
+Uses this package to release a version of your application
 
 
 
