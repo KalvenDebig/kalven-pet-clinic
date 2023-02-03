@@ -4,8 +4,6 @@ import kalven.springframework.kalvenpetclinic.model.Owner;
 import kalven.springframework.kalvenpetclinic.model.Vet;
 import kalven.springframework.kalvenpetclinic.services.OwnerService;
 import kalven.springframework.kalvenpetclinic.services.VetService;
-import kalven.springframework.kalvenpetclinic.services.map.OwnerServiceMap;
-import kalven.springframework.kalvenpetclinic.services.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +12,10 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        this.ownerService = new OwnerServiceMap();
-        this.vetService = new VetServiceMap();
+    // no need for autowired
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override

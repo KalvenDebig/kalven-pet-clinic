@@ -2,9 +2,11 @@ package kalven.springframework.kalvenpetclinic.services.map;
 
 import kalven.springframework.kalvenpetclinic.model.Pet;
 import kalven.springframework.kalvenpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
