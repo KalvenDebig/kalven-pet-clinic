@@ -10,5 +10,4 @@ public class KalvenPetClinicApplication {
         System.out.println("--- application starts ---");
         SpringApplication.run(KalvenPetClinicApplication.class, args);
     }
-
 }

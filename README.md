@@ -100,3 +100,25 @@ Here in this project we can mimic how JPA implement those methods like save(), f
 * Spring Boot's autoconfiguration will tell Spring to perform a component scan of the package of the main class  
     * This includes all sub packages of the main class package  
 * When using Spring Boot, if class is outside the main class package tree, you must declare the component scan  
+
+## Spring Bean Scopes  
+
+* Singleton - (default) Only one instance of the bean is created in the IoC container.  
+* Prototype - A new instance is created each time the bean is requested  
+* Request - A single instance per http request. Only valid in the context of a web-aware Spring ApplicationContext  
+* Session - A single instance per http session. Only valid if the context of a web-aware Spring ApplicationContext  
+* Global-Session - A single instance per global session. Typically Only used in a Portlet context. Only valid in the context of a web-aware Spring ApplicationContext
+* Application - bean is scoped to the lifecycle of a ServletContext. Only valid in the context of a web aware.  
+* Websocket - Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a web-aware Spring ApplicationContext  
+* Custom Scope - Spring Scopes are extensible, and you can define your own scope by implementing Spring's `Scope` interface.  
+* See Spring's Java docs for details  
+* You cannot override the built in Singleton and Prototype Scopes  
+
+
+## Declaring Bean Scope  
+
+* No declaration needed for singleton scope.  
+* In Java configuration use @Scope annotation  
+* In XML configuration scope is an XML attribute of the `bean` tag  
+* 99% of the time singleton scope is fine!  
+
