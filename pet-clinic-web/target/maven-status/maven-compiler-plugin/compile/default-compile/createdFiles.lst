@@ -1,1 +1,5 @@
+kalven/springframework/kalvenpetclinic/controllers/IndexController.class
 kalven/springframework/kalvenpetclinic/KalvenPetClinicApplication.class
+kalven/springframework/kalvenpetclinic/controllers/OwnerController.class
+kalven/springframework/kalvenpetclinic/controllers/VetController.class
+kalven/springframework/kalvenpetclinic/bootstrap/DataLoader.class

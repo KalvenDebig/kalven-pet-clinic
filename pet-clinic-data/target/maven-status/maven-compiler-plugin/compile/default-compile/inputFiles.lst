@@ -1,5 +1,14 @@
 /Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/model/PetType.java
 /Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/model/Person.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/PetService.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/map/OwnerServiceMap.java
 /Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/model/Owner.java
 /Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/model/Vet.java
 /Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/model/Pet.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/model/BaseEntity.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/VetService.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/OwnerService.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/map/AbstractMapService.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/CrudService.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/map/VetServiceMap.java
+/Users/kalvens/Desktop/Udemy/spring/kalven-pet-clinic/pet-clinic-data/src/main/java/kalven/springframework/kalvenpetclinic/services/map/PetServiceMap.java
