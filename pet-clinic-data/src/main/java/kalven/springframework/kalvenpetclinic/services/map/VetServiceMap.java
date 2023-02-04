@@ -1,6 +1,8 @@
 package kalven.springframework.kalvenpetclinic.services.map;
 
+import kalven.springframework.kalvenpetclinic.model.Specialty;
 import kalven.springframework.kalvenpetclinic.model.Vet;
+import kalven.springframework.kalvenpetclinic.services.SpecialtyService;
 import kalven.springframework.kalvenpetclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,12 @@ import java.util.Set;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+    private final SpecialtyService specialtyService;
+
+    public VetServiceMap(SpecialtyService specialtyService) {
+        this.specialtyService = specialtyService;
+    }
+
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
@@ -20,7 +28,16 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet object) {
-        super.save(object);
+        if (object == null) return null;
+
+        if (object.getSpecialties().size() > 0) {
+            object.getSpecialties().forEach(specialty -> {
+                if (specialty.getId() == null) {
+                    Specialty savedSpecialty = specialtyService.save(specialty);
+                    specialty.setId(savedSpecialty.getId());
+                }
+            });
+        }
         return object;
     }
 
