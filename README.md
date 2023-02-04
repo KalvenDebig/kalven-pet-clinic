@@ -288,7 +288,7 @@ Here in this project we can mimic how JPA implement those methods like save(), f
 * But caching will require a container restart to refresh the cache  
 * Developer Tools will disable tempalte caching so the restart is not required to see changes  
 
-# LiveReload  
+## LiveReload  
 
 * Live Reload is a technology to automatically trigger a browser refresh when resources are changed  
 * Spring Boot Developer Tools includes a Live Reload server  
