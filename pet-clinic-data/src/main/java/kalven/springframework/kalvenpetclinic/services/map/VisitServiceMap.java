@@ -2,6 +2,7 @@ package kalven.springframework.kalvenpetclinic.services.map;
 
 import kalven.springframework.kalvenpetclinic.model.Visit;
 import kalven.springframework.kalvenpetclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -9,6 +10,8 @@ import java.util.Set;
  * @Project kalven-pet-clinic
  * @Author kalvens on 2/6/23
  */
+
+@Service
 public class VisitServiceMap extends AbstractMapService<Visit, Long> implements VisitService {
     @Override
     public Set<Visit> findAll() {

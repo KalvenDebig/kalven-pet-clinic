@@ -1,10 +1,7 @@
 package kalven.springframework.kalvenpetclinic.bootstrap;
 
 import kalven.springframework.kalvenpetclinic.model.*;
-import kalven.springframework.kalvenpetclinic.services.OwnerService;
-import kalven.springframework.kalvenpetclinic.services.PetTypeService;
-import kalven.springframework.kalvenpetclinic.services.SpecialtyService;
-import kalven.springframework.kalvenpetclinic.services.VetService;
+import kalven.springframework.kalvenpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +13,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
     // no need for autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -75,8 +75,16 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(kalven);
         ownerService.save(jim);
 
-
         System.out.println("Owner data saved");
+
+        System.out.println("---- add visit data");
+        Visit catVisit = new Visit();
+        catVisit.setData(LocalDate.now());
+        catVisit.setDescription("cat visit");
+        catVisit.setPet(cat1);
+        visitService.save(catVisit);
+
+        System.out.println("---- visit data added");
 
         System.out.println("Start loading vets");
 
