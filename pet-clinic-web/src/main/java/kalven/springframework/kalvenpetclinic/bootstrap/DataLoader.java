@@ -2,6 +2,8 @@ package kalven.springframework.kalvenpetclinic.bootstrap;
 
 import kalven.springframework.kalvenpetclinic.model.*;
 import kalven.springframework.kalvenpetclinic.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
