@@ -1,18 +1,26 @@
 package kalven.springframework.kalvenpetclinic.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "visits")
 public class Visit extends BaseEntity {
-    private LocalDate data;
+    @Column(name = "date")
+    private LocalDate date;
+    @Column(name = "description")
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     public LocalDate getData() {
-        return data;
+        return date;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setData(LocalDate date) {
+        this.date = date;
     }
 
     public String getDescription() {
