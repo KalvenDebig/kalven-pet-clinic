@@ -442,4 +442,61 @@ Here in this project we can mimic how JPA implement those methods like save(), f
     * SpringBoot will look on the root classpath for the files schema.sql and data.sql  
     
 
+## Project Lombok  
+
+* Hooks in via the Annotation processor API  
+* The AST (raw source code) is passed to Lombok for code generation before the Java compiler continues  
+* Thus, produces properly compiled Java code in conjunction with the Java compiler  
+* Under the 'target/classes' you can view the compiledc class files  
+* IntelliJ will decompile to show you the source code  
+
+## Lombok Features  
+
+* **val** - local variables declared final  
+* **var** - mutable loval variables  
+* @NonNull - Null check, will throw NPE if parameter is null 
+* @Cleanup - will call close() on resource in finally block  
+* @Getter - Creates getter methods for all properties  
+* @Setter - Creates setter for all non-final properties  
+* @ToString  
+    * Generates String of classname, and each field separated by commas  
+    * Optional parameter to include field names  
+    * Optional parameter to include call to the super toString method 
+* @EqualsAnsHashCode  
+    * Generates implementations of equals(Object other) and hashCode()  
+    * by default will use all non-static, non-transient properties  
+    * Can optionally exclude specific properties  
+* @NoArgsConstructor  
+    * Generates no args constructor  
+    * Will cause compiler error if there are final fields  
+    * Can optionally force, which will initialize final fields with 0/false/null  
+* @RequiredArgsConstructor  
+    * Generates a constructor for all fields that are final or marked @NonNull  
+    * Constructor will throw a NullPointerException if any @NonNull fields are null  
+* @AllArgsConstructor  
+    * Generates a constructor for all properties of class  
+    * Any @NotNull properties will have null check  
+* @Data  
+    * Generates typical boilerplate code for POJOS  
+    * Combines - @Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArdsConstructor  
+    * No constructor is generated if constructors have been explicitly declared  
+* @Value  
+    * The immutable varient of @Data  
+    * All fields are made of private and finaly by default  
+* @NonNull  
+    * Set on parameters of methods or constructor and a NullPointerException will be thrown if parameter is null 
+* @Builder
+    * Impelement the `builder` pattern for object creation  
+    * Person.builder().name("Adam Savage").city("SF").job("rapper").job("Unchained Reaction").build();  
+* @SneakyThrows  
+    * Throw checked exception without declaring in calling method's throw clause  
+* @Syncronized  
+    * A safer implementation of Java's synchronized  
+* @Getter(lazy = true) - for expensive getters  
+    * Will calculate value first time and cache  
+    * Additional gets will read from cache  
+* @Log - Creates a Java util logger - Java util loggers are awful  
+* @Slf4j - Creates a SLF4J logger  
+* Recommended - SLF4J is a generic logging cache  
+* Spring Boot's default logger is LogBack  
 
