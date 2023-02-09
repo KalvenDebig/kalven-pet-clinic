@@ -23,6 +23,6 @@ public class OwnerController {
 
     @RequestMapping("/find")
     public String findOwners() {
-        return "/oups";
+        return "oups";
     }
 }
