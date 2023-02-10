@@ -1,4 +1,4 @@
-[![CircleCI](https://dl.circleci.com/insights-snapshot/gh/KalvenDebig/kalven-pet-clinic/main/workflow/badge.svg?window=7d&circle-token=b0261c403063df19aeb611eb31363aa8bfb234df)](https://app.circleci.com/insights/github/KalvenDebig/kalven-pet-clinic/workflows/workflow/overview?branch=main&reporting-window=last-7-days&insights-snapshot=true)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/KalvenDebig/kalven-pet-clinic/tree/main.svg?style=svg&circle-token=d8e5ca085f4e53f5e9aeffc80f02a9c60e3ccc53)](https://dl.circleci.com/status-badge/redirect/gh/KalvenDebig/kalven-pet-clinic/tree/main)
 
 # SOLID Principle of OOD
 
