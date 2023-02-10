@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/insights-snapshot/gh/KalvenDebig/kalven-pet-clinic/main/workflow/badge.svg?window=7d&circle-token=b0261c403063df19aeb611eb31363aa8bfb234df)](https://app.circleci.com/insights/github/KalvenDebig/kalven-pet-clinic/workflows/workflow/overview?branch=main&reporting-window=last-7-days&insights-snapshot=true)
+
 # SOLID Principle of OOD
 
 * S - Single Responsibility Principle
