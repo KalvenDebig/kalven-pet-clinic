@@ -66,4 +66,15 @@ class OwnerControllerTest {
                 .andExpect(MockMvcResultMatchers.view().name("oups"));
         Mockito.verifyNoInteractions(ownerService);
     }
+
+    @Test
+    void displayOwners() throws Exception {
+        Mockito.when(ownerService.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(Owner.builder().id(1L).build());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners/123"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("owners/ownerDetails"))
+                .andExpect(MockMvcResultMatchers.model().attribute("owner", Matchers.hasProperty("id", Matchers.is(1L))));
+    }
 }

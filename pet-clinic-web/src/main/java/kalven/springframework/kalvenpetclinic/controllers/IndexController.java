@@ -10,7 +10,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping({"/oups", "/error"})
+    @RequestMapping("/oups")
     public String oupsHandler() {
         return "oups";
     }
