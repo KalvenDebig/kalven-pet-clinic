@@ -27,13 +27,6 @@ public class OwnerController {
         dataBinder.setDisallowedFields("id");
     }
 
-//    @RequestMapping({"", "/", "/index", "/index.html"})
-//    public String listOwners(Model model) {
-//        model.addAttribute("owners", ownerService.findAll());
-//
-//        return "owners/index";
-//    }
-
     @RequestMapping("/find")
     public String findOwners(Model model) {
         model.addAttribute("owner", Owner.builder().build());
