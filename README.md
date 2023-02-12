@@ -570,7 +570,6 @@ Here in this project we can mimic how JPA implement those methods like save(), f
 |@BeforeClass| Executed once. before the start of all test. Methods marked with this annotation need to be defined as static to work with JUnit|  
 |@Ignore|Marks that the test should be disabled|  
 |@Test(expected = Exception.class)|Fails if the methods does not throw the named exception|  
-
 |@Test(timeout = 10)|Fails if the methods takes longer than 100 milseconds|  
 |@RunWith(SpringRunner.class)|Run test with Spring Context|  
 |@SpringBootTest| Search for Spring Boot Application for configuration|  
