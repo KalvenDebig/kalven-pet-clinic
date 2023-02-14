@@ -651,3 +651,156 @@ Here in this project we can mimic how JPA implement those methods like save(), f
     * 'firstName' would bind to property firstName  
     * 'address.addressLine1' would bind to the addressLine1 one of the address property of the PersonBean  
     * email[0]/email[1] would bind to index zero and one of the email List or Set property of Person  
+
+## HTTP Status Code  
+
+* HTTP 5xx Server Error  
+    * HTTP 500 - Internal Server Error  
+    * Generally, any unhandled exception  
+* Other 500 errors are generally not used with Spring MVC  
+
+* HTTP 4xx Client Errors - Generally Checked Exceptions  
+    * 400 Bad Request - Cannot process due to client error  
+    * 401 Unauthorized - Authentication required  
+    * 404 Not Found - Resource Not Found  
+    * 405 Method Not Allowed - HTTP method not allowed  
+    * 409 - Conflict - Possible with simulataneous updates  
+    * 417 Expectation Failed - Sometimes used with RESTful interfaces  
+
+## @ResponseStatus  
+
+* Allows you to annotate custom exception classes to indicate to the framework the HTTPS status you want returned when that exception is thrown.  
+* Global to the application  
+
+## @ExceptionHandler  
+
+* @Exceptionhandler works at the controller level  
+* Allows youto define custom exception handling  
+    * Can be used with @ResponseStatus for just returning a http status  
+    * Can be used to return a specific view  
+    * Also can take total control and work with the Model and View  
+        * 'Model' cannot be a parameter of an ExceptionHandler method  
+
+## HandlerExceptionResolver  
+
+* HandlerExceptionResolver is an interface you can implement for custom exception handling  
+* Used Internally by Spring MVC  
+* Note Model is not passed  
+
+```java
+public interface HandlerExceptionResolver {
+    @Nullable  
+    ModelAndView resolveException(
+        HttpServletRequest request, HttpServletResponse response, @Nullable Object handler, Exception ex);
+}
+```
+
+## Internal Spring MVC Exception Handlers  
+
+* Spring MVC has 3 implementations of HandlerExceptionResolver  
+* ExceptionHandlerExceptionResolver - Matches uncaught exceptions to @ExceptionHandler  
+* ResponseStatusExceptionResolver - Looks for uncaught exceptions mathcing @ResponseStatus  
+* DefaultHandlerExceptionResolver - Converts standard Spring Exceptions to HTTP status codes (Interval to Spring MVC)  
+
+## Custom HandlerExceptionResolver  
+
+* You can provide your own implementations of HandlerExceptionResolver  
+* Typically implemented with Spring's Ordered interface to define order the handlers will run in  
+* Custom implementations are uncommon due to Spring robust exception handling  
+
+## SimpleMappingExceptionResolver  
+
+* A Spring Bean you can define to map exceptions to specific views  
+* You only define the exception class name (no package) and the view name  
+* You can optionally define a default error page  
+
+## Which to Use When?  
+
+* Depends on your specific needs  
+    * If just setting the HTTP staus - use @ResponseStatus  
+    * If redirection to a view, use SimpleMappingExceptionResolver
+    * If both, consider @ExceptionHandler on the controller  
+
+## Built In Constraint Definitions  
+
+* @Null - checks value is null  
+* @NotNull - checks value is not null  
+* @AssertTrue - Value is true  
+* @AssertFalse - Value is false  
+* @Min - Number is equal or higher  
+* @Max - Number is equal or less  
+* @DecimalMin - Value is larger  
+* @DecimalMax - Value is less than  
+* @Negative - Value is less than zero, Zero is valid  
+* @NegativeOrZero - Value is zero or less than zero  
+* @Positive - Value is greater than zero. Zero is valid  
+* @PositiveOrZero - Value is zero or greater than zero.  
+* @Size - Check if string or collection is between a min and max  
+* @Digits - check for integer digits and fraction digits.  
+* @Past - check if date is past  
+* @PastOrPresent - check is date is in past or present  
+* @Future - checks if date is in future  
+* @FutureOrPresent - Checks if date is present or in future  
+* @Pattern - checks against RegEx pattern  
+* @Not Empty - chekcs if value is not null nor empty (whitespace characters or empty collection)  
+* @NonBlank - checks string is not null or not whitespace characters  
+* @Email - checks if string value is an email address  
+
+## Hibernate Validator Constraints  
+
+* @ScriptAssert - Class level annotation, checks class against script  
+* @CreditCardNumber - Verifies value is a credit number  
+* @Currency - Valid currentcy amount  
+* @DurationMax - Duration less than given value  
+* @DurationMin - Duration greater than given value  
+* @EAN - Valid EAN barcode  
+* @ISBN - Valid ISBN value  
+* @Length - String length between given min and max  
+* @CodePointLength - Validates that code point length of the annotated character sequence is between min and max included  
+* @LuhnCheck - Luhn check sum  
+* @Mod10Check - Mod 10 check sum  
+* @Mod11Check - Mod 11 check sum  
+* @Range - checks if number is between given min and max(inclusive)  
+* @SafeHtml - checks for safe HTML  
+* @UniqueElements - checks if collection has unique elements  
+* @Url - checks for valid URL  
+
+## Hibernate Validator Country Constraints  
+
+* @CNPJ - Brazilian Corporate Tax Payer Registry Number  
+* @CPF - Brazilian Individual Tax Payer registry Number  
+* @TituloEleitoral - Brazilian vote ID  
+* @NIP - Poish VAR ID  
+* @PESEL - Polish National Validation Number  
+* @REGON - Polish Tax Payer ID  
+
+## I18N Locale Detection  
+
+* Default behavior is to use Accept-Language header  
+* Can be configured to use system, a cookie, or a custom parameter.  
+    * Custom Parameter is useful to allow user to select language.  
+
+## Locale Resolvers  
+
+* AcceptHeaderLocaleResolver is the Spring Boot Default  
+* Optionally, can use FixedLocaleResolver  
+    * Uses the locale of the JVM  
+* Available: CookieLocaleResolver, SessionLocaleResolver  
+
+## Changing Locale  
+
+* Browsers are typically tied to the Locale of the operating system  
+* Locale chaning plugins are available  
+* Spinrg MVC provides as LocaleChangeInterceptor to allow you to configure a custom parameter to use to change the locale  
+
+## Resource Bundles  
+
+* Resouce bundles (aka messages.properties) are selected on highest match order  
+* First selected will be on language region 
+    * ie en-US would match messages_en_US.properties  
+* If no exact match is found, just the language code is used  
+    * en-GB would match messages_en_GB.properties  
+    * OR if no file found, would match messages_en.properties  
+    * Finally would match messages.properties  
+
+    
