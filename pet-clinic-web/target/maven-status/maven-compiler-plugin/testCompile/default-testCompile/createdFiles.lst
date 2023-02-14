@@ -1,3 +1,5 @@
 kalven/springframework/kalvenpetclinic/KalvenPetClinicApplicationTests.class
 kalven/springframework/kalvenpetclinic/controllers/OwnerControllerTest.class
+kalven/springframework/kalvenpetclinic/controllers/VisitControllerTest.class
+kalven/springframework/kalvenpetclinic/controllers/VetControllerTest.class
 kalven/springframework/kalvenpetclinic/controllers/PetControllerTest.class

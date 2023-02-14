@@ -4,3 +4,4 @@ kalven/springframework/kalvenpetclinic/controllers/OwnerController.class
 kalven/springframework/kalvenpetclinic/controllers/PetController.class
 kalven/springframework/kalvenpetclinic/controllers/VetController.class
 kalven/springframework/kalvenpetclinic/bootstrap/DataLoader.class
+kalven/springframework/kalvenpetclinic/controllers/VisitController.class

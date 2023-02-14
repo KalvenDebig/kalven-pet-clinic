@@ -36,5 +36,6 @@ kalven/springframework/kalvenpetclinic/services/springdatajpa/PetTypeSpringDataJ
 kalven/springframework/kalvenpetclinic/model/Vet$VetBuilder.class
 kalven/springframework/kalvenpetclinic/services/SpecialtyService.class
 kalven/springframework/kalvenpetclinic/model/Visit$VisitBuilder.class
+kalven/springframework/kalvenpetclinic/formatters/PetTypeFormatter.class
 kalven/springframework/kalvenpetclinic/services/OwnerService.class
 kalven/springframework/kalvenpetclinic/model/Specialty$SpecialtyBuilder.class
