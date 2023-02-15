@@ -804,3 +804,94 @@ public interface HandlerExceptionResolver {
     * Finally would match messages.properties  
 
     
+## What is Docker?  
+
+* Docker is a standard for Linux containers.  
+* A "Container" is an isolated runtime inside of Linux
+* A "Container" provides a private machine like space under Linux.  
+* Containers will run under any modern Linux kernal
+
+## Containers can  
+
+* HJave their own process space.  
+* Their own network interface  
+* 'Run' processes as root (inside the container)  
+* Have their own disk space 
+    can share with host too  
+
+
+## Docker Terminology  
+
+* Docker Image - The representation of a Docker Container. Kind of like a Jar ow War file in java.  
+* Docker Container - The standard runtime of Docker. Effectively a deployed and running Docker Image. Like a Spring Boot executable Jar.  
+* Docker Engine - The code which manages Docker stuff. Creates and runs Docker containers  
+
+ 
+## What is a Docker Image?  
+
+* An Image defines a Docker Container  
+    * Similar in concept to a snapshot of a VM.  
+    * Or a class vs an instance of the class. 
+* Images are immutable  
+    * Once built, the files making up an image do not change.  
+
+
+## Image Layers  
+
+* Images are built in layers  
+* Each layer is an immutable file, but is a collection of files and directories.  
+* Layers receive an ID, calculated via a SHA 256 hash of the layer contents.  
+    * Thus, if the layer contents change, the SHA 256 hash changes as well  
+
+## Images Ids  
+
+* Image Ids are a SHA 256 hash derived from the layers  
+    * Thus if the layers of the image changes. the SHA 256 hash changes  
+* The Image ID listed by docker commands `docker images` is the first 12 characters of the hash.  
+
+## Image Tag Names  
+
+* The hash values of images are referred to by 'tag' names  
+    * This concept is very confusing at first  
+
+* The format of the full tag name is: `[REGISTRYHOST/][USERNAME/]NMAE[:TAG]`  
+* For Registry Host 'registry.hub.docker.com' is inferred  
+* For ':TAG' - 'latest' is default, and inferred.  
+* Full tag example: registry.hub.docker.com/mongo:latest
+* REPOSITORY: mongo, TAG: latest
+
+
+## Cleaning Up After Docker  
+
+* With Development Use Docker can leave behind a lot of files  
+* These files will grow and consume lots of disk space  
+* This is less of an issue on production systems where containers aren't being built and restarted all the time  
+* There are 3 key areas of house keeping:  
+    * Containers  
+    * Images  
+    * Volumes  
+
+## Cleaning Up Containers  
+
+* Kill all Running Docker Containers  
+    * `docker kill $(docker ps -q)`
+* Delete all Stopped Docker Containers  
+    * `docker rm $(docker ps -a -q)`  
+
+## Cleaning Up Images  
+
+* Remove a Docker Image  
+    * `docker rmi <image name>`    
+* Delete Untagged (dangling) Images  
+    * `docker rmi $(docker images -q -f dangling=true)`  
+* Delete All Images  
+    * `docker rmi $(docker images -q)`  
+
+## Cleaning Up Volumes  
+
+* Once a volume is no longer associated with a container, it is considered 'dangling'  
+* Remove all dangling volumes  
+    * `docker volume rm $(docker volume ls -f dangling=true -q)`  
+* NOTE: Dost not remove files from host system in shared volumes  
+
+[cheat sheet](https://springframework.guru/docker-cheat-sheet-for-spring-developers)  
