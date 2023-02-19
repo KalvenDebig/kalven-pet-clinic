@@ -699,7 +699,7 @@ public interface HandlerExceptionResolver {
 
 * Spring MVC has 3 implementations of HandlerExceptionResolver  
 * ExceptionHandlerExceptionResolver - Matches uncaught exceptions to @ExceptionHandler  
-* ResponseStatusExceptionResolver - Looks for uncaught exceptions mathcing @ResponseStatus  
+* ResponseStatusExceptionResolver - Looks for uncaught exceptions matching @ResponseStatus  
 * DefaultHandlerExceptionResolver - Converts standard Spring Exceptions to HTTP status codes (Interval to Spring MVC)  
 
 ## Custom HandlerExceptionResolver  
@@ -717,7 +717,7 @@ public interface HandlerExceptionResolver {
 ## Which to Use When?  
 
 * Depends on your specific needs  
-    * If just setting the HTTP staus - use @ResponseStatus  
+    * If just setting the HTTP status - use @ResponseStatus  
     * If redirection to a view, use SimpleMappingExceptionResolver
     * If both, consider @ExceptionHandler on the controller  
 
@@ -742,7 +742,7 @@ public interface HandlerExceptionResolver {
 * @Future - checks if date is in future  
 * @FutureOrPresent - Checks if date is present or in future  
 * @Pattern - checks against RegEx pattern  
-* @Not Empty - chekcs if value is not null nor empty (whitespace characters or empty collection)  
+* @Not Empty - checks if value is not null nor empty (whitespace characters or empty collection)  
 * @NonBlank - checks string is not null or not whitespace characters  
 * @Email - checks if string value is an email address  
 
@@ -750,7 +750,7 @@ public interface HandlerExceptionResolver {
 
 * @ScriptAssert - Class level annotation, checks class against script  
 * @CreditCardNumber - Verifies value is a credit number  
-* @Currency - Valid currentcy amount  
+* @Currency - Valid currency amount  
 * @DurationMax - Duration less than given value  
 * @DurationMin - Duration greater than given value  
 * @EAN - Valid EAN barcode  
@@ -790,12 +790,12 @@ public interface HandlerExceptionResolver {
 ## Changing Locale  
 
 * Browsers are typically tied to the Locale of the operating system  
-* Locale chaning plugins are available  
-* Spinrg MVC provides as LocaleChangeInterceptor to allow you to configure a custom parameter to use to change the locale  
+* Locale changing plugins are available  
+* Spring MVC provides as LocaleChangeInterceptor to allow you to configure a custom parameter to use to change the locale  
 
 ## Resource Bundles  
 
-* Resouce bundles (aka messages.properties) are selected on highest match order  
+* Resource bundles (aka messages.properties) are selected on highest match order  
 * First selected will be on language region 
     * ie en-US would match messages_en_US.properties  
 * If no exact match is found, just the language code is used  
@@ -894,4 +894,514 @@ public interface HandlerExceptionResolver {
     * `docker volume rm $(docker volume ls -f dangling=true -q)`  
 * NOTE: Dost not remove files from host system in shared volumes  
 
-[cheat sheet](https://springframework.guru/docker-cheat-sheet-for-spring-developers)  
+[cheat sheet](https://springframework.guru/docker-cheat-sheet-for-spring-developers)    
+
+## RDBMS Deployment Architectures  
+
+* RDBMS's can be deployed in a number of different ways.  
+* Typically is driven by needs of scalability and availability.  
+* Can be done on a single non-dedicated server, or many dedicated servers  
+* Communication is typically over a network socket.  
+* The client will need software called a 'driver' to talk to the databse over the network socket  
+
+## Simple Non-Dedicated Server  
+
+* Single Server (computer)  
+* RDBMS is installed  
+* User logs in and accesses database from command line  
+* Simplest configuration  
+* Often we talk over localhost and a network socket on localhost  
+
+## LAMP Stack  
+
+* LAMP = Linux, Apache, MySQL, PHP  
+* Very popular  
+* Most websites will run off a single server  
+* Downside is database and Apache compete for the limited server resource  
+
+## Client Server  
+
+* "Client Server" was the buzz in the 90s  
+* Concept of moving application code to the client and different hardware, while using dedicated harware for the database server.  
+* Offloads the application load from the database server  
+ 
+## Scaling Client Server  
+
+* Scalability is achieved by doing processing on application servers  
+* Database Server is dedicated.  
+* Often companies will increase the size of the database server to grow further  
+* Data storage is off loaded to dedicated hardware  
+
+## Scaling Even Higher  
+
+* Multiple Servers are used for the database  
+* Example - Oracle Real Application Cluster  
+* Improves Scalability over a single database server   
+* Improves Reliability since a node can be lost, and the database cluster will continue  
+* "Mainframe" like performance  
+
+## Scaling Even Higher?  
+* Cloud Scale, Amazon Google Facebook  
+* Distributed computing - load is spread to many many servers.  
+* Often cheap commodity servers are used.  
+* Large mainframe like systems are avoided.  
+* Significantly different paradigm than Client Server  
+* RDBMS's are typically not used due to scalability limitations.  
+
+## MySQL Types of Connections  
+
+* Local Connection  
+    * You're connecting to MySQL from the command line on the machine running MySQL  
+    * Protocol depends on your Operating System  
+* Remote/Client Connection  
+    * You're using some type of client software on the same machine running MySQL  
+    * Or - Connecting to the MySQL Server from a different machine over the network  
+
+## Client Protocols  
+
+* TCP/IP - Most Common  
+* Socket - Unix/OSX/Linux Only  
+* PIPE - Windows Only  
+* MEMORY - Windows Only  
+
+## TCP/IP  
+
+* TCP/IP - Transmission Control Protocol/Internet Protocol  
+* DNS - Domain Name Service - Associates an IP address with a human readable name  
+* "localhost" is the computer you are on. IP Address: 127.0.0.1  
+* A "port" is a logical connection endpoint of an IP Address  
+* Ports range from 0 to 65535  
+* MySQL be default will connect on port 3306  
+
+## MySQL Command Line/MySQL Workbench  
+* From the operating system command line, we can use the program "mysql" to connect to the MySQL database  
+* This is a client program for the command line which gives you a shell to interact with the database  
+* MySQL Workbench is a GUI for working with the MYSQL database  
+
+
+## MongoDB (document oriented database)  
+
+* MongoDB documents are stored in BSON  
+    * Binary JSON  
+* MongoDB is a NoSql database  
+* MongoDB is great for high insert systems  
+    * Such as sensor readings, social media systems, advertising systems.  
+* Good when you need schema flexibility  
+* Can also support a high number of read per second  
+
+## Why Avoid MongoDB?  
+
+* MongoDB has no concept of transactions  
+    * No ACID  
+    * No locking for transactional support, hence faster inserts  
+* Not good for concurrent updates  
+* Losing data  
+
+## MongoDB Terminology  
+
+|RDMS|MongoDB|  
+|---|---|  
+|Database|Database|  
+|Table|Collection|  
+|Row|Document|  
+|Column|Field|  
+|Table Join|Embedded Documents|  
+|Primary Key|Primary Key|  
+|Aggregation|Aggregation Pipeline|  
+
+## Reactive Manifesto  
+
+* Reactive Systems - Architecture and Design  
+    * Cloud Native  
+* Reactive Programming  
+    * Generally Event Based  
+* Functional Reactive Programming (FRP)  
+    * Often confused with Reactive Programming  
+
+## Reactive Manifesto - Responsive  
+
+* The system responds in a timely manner.  
+* Responsiveness is the cornerstone of usability and utility  
+* Responsiveness also means problems may be detected quickly and dealt with effectively.  
+* Responsive systems provide rapid and consistent response times.  
+* Consistent behavior simplifies error handling, builds end user confidence, and encourages further interaction.  
+
+## Reactive Manifesto - Resilient  
+
+* System stays responsive in the face of failure.  
+* Resilience is achieved by replication, containment, isolation, and delegation.  
+* Failures are contained within each component.  
+* Parts of the system can fail, without compromising the system as a whole  
+* Recovery of each component is delegated to another  
+* High-availability is ensured by replication where necessary.  
+
+## Reactive Manifesto - Elastic  
+
+* The system stays responsive under varying workload  
+* Reactive Systems can react to changes in the input rate by increasing or decreasing resources allocated to service inputs.  
+* Reactive Systems achieve elasticity in a cost effective way on commodity hardware and software platforms  
+
+
+## Reactive Manifesto - Message  Driven  
+
+* Reactive Systems rely on asynchronous message passing to establish a boundary between components  
+    * This ensures loose coupling, isolation, and location transparency.  
+* Message passing enables load management, elasticity, and flow control.  
+* Location transparent messaging makes management of failures possible  
+* Non-blocking communication allows recipients to only consume resources while active, leading to less system overhead.  
+
+## Reactive Programming with Reactive System  
+
+* Reactive programming is a useful implementation technique  
+* Reactive Programming focuses on non-blocking, asynchronous execution - a key characteristic of Reactive Systems.  
+* Reactive Programming is just on tool in building Reactive Systems.    
+
+## Reactive Programming  
+
+* Reactive Programming is an asynchronous programming paradigm focused on streams of data. 
+
+## Common Use Cases  
+
+* External Service Calls  
+* Highly Concurrent Message Consumers  
+* Spreadsheets  
+* Abstraction Over Asynchronous Processing  
+    * Abstract whether or not your program is synchronous or asynchronous  
+
+## Features of Reactive Programming  
+
+* Data Streams  
+* Asynchronous  
+* Non-blocking  
+* Backpressure  
+* Failure as Messages  
+
+## Data Streams  
+
+* Data Streams can be just about anything.  
+* Mouse clicks, or other user interactions  
+* JMS Messages, RESTful Service calls, Twitter feed, Stock Trades, list of data from a database  
+* A Stream is a sequence of events ordered in time.  
+* Events you want to listen to.  
+
+## Asynchronous  
+
+* Events are captured asynchronously.  
+* A function is defined to execute when an event is emitted.  
+* Another function is defined if an error is emitted.  
+* Another function is defined when complete is emitted.  
+
+## Non-Blocking  
+
+* The concept of using non-blocking is important.  
+* In blocking, the code will stop and wait for more data (ie reading from disk, network, etc)  
+* Non-blocking in contrast, will process available data, ask to be notified when more is available, then continue,  
+
+
+## Back pressure  
+
+* The ability of the subscriber to throttle data  
+
+## Failures as Messages  
+
+* Exceptions are not thrown in a traditional sense.  
+    * Would break processing of stream  
+* Exception are processed by a handler function  
+
+## Key Take Away  
+
+* Reactive Programming focuses on processing streams of data  
+* Traditional CRUD applications are still alive and well.  
+
+
+## Reactive Streams API  
+
+* Goal is to create a standard for asynchronous stream processing with non-blocking back pressure.  
+* Reactive Streams is a set of 4 interfaces which define the API  
+
+**Publisher**
+```java
+/**
+ * A {@link Publisher} is a provider of a potentially unbounded number of sequenced elements, publishing them according to the demand received from its {@link Subscriber}(s).
+ * 
+ * A {@link Publisher} can serve multiple {@link Subscriber}s subscribed {@link #subscribe(Subscriber)} dynamically at various points in time.  
+ * 
+ * @param <T> the type of element signaled.  
+ */ 
+public interface Publisher<T> {
+    /**
+     * Request {@link Publisher} to start streaming data.  
+     * This is a "factory method" and can be called multiple times, each time starting a new {@link Subscription}.  
+     * 
+     * Each {@link Subscription} will work for only a single {@link Subscriber}.  
+     * 
+     * A {@link Subscriber} should only subscribe once to a single {@link Publisher}.  
+     * 
+     * If the {@link Publisher} rejects the subscription attempt or otherwise fails it will singal the error via {@link Subscriber#onError}.
+     * 
+     * @param s the {@link Subscriber} that will consume signals from this {@link Publisher})
+     */ 
+    public void subscribe(Subscriber<? super T> s);
+}
+```  
+
+**Subscriber**   
+```java
+public interface Subscriber<T> {
+    public void onSubscribe(Subscription s);
+
+    public void onNext(T t);
+
+    public void onError(Throwable t);
+
+    public void onComplete();
+}
+```
+
+**Subscription**  
+```java
+public interface Subscription {
+    public void request(long n);
+    public void cancel();
+}
+```
+
+**Processor** 
+```java
+public interface Processor<T, R> extends Subscriber<T>, Publisher<P> {
+}
+```
+
+## Spring MVC & Spring WebFlux  
+|@Controller / @RequestMapping|Router Functions|  
+|---|---|  
+|Spring-webmvc|spring-webflux|  
+|Servlet API|HTTP/Reactive Streams|  
+|Servlet Container|Tomcat, Jetty, Netty, Undertow|  
+
+## Spring Reactive Types  
+
+* Two new ractive types are introduced with Spring Framework 5  
+* `Mono` is a publisher with zero or one elements in data stream  
+* `Flux` is a publisher with zero or MANY elements in the data stream  
+* Both types implement the Reactive Stream Publisher interface  
+
+## Guide To REST  
+
+* Becuase of the simplicity and versatility, RESTful web services have become the de facto standard for web services.  
+
+* REST - Representational State Transfer  
+    * Representation - Typically JSON or XML  
+    * State Transfer - Typically via HTTP  
+
+## RESTful Terminology  
+
+* Verbs - HTTP methods: GET, PUT, POST, DELETE  
+* Messaages - the payload of the action (JSON/XML)  
+* URI - Uniform Resource Identifier  
+    * A unique string identifying a resource  
+* URL - Uniform Resource Locator  
+    * A URI with network information [link](http://www.example.com)  
+* Stateless - Service does not maintain any client state  
+* HATEOAS - Hypermedia as the engine of application state  
+
+## HTTP - GET  
+
+* Use: to read data from resource  
+* Read only  
+* Idempotent  
+* Safe operation - does not change state of resource  
+
+## HTTP - PUT  
+
+* Use: to insert (if not found) or update (if found)  
+* Idempotent - Multiple PUTs will not change result.  
+    * Like saving a file multiple times  
+* Not safe operation - does change state of resource  
+
+## HTTP - POST  
+
+* Use: to create new object (insert)  
+* Non-Idempotent - Multiple POSTs is expected to create multiple objects  
+* Not Safe operation - does change state of resource  
+* Only Non-Idempotent, Non-safe HTTP verb  
+
+## HTTP - DELETE  
+
+* Use: to delete an object (resource)  
+* Idempotent - Multiple DELETEs will have same effect / behavior  
+* Not Safe operation - does change state of resource  
+
+## Richardson Maturity Model (RMM)  
+
+* A model used to describe the maturity of RESTful services  
+* Unlike SOAP, there is no formal specification for REST  
+* RMM is used to describe the quality of the RESTful service  
+
+## RMM levels  
+
+* Level 3: Hypermedia controls  
+* Level 2: HTTP Verbs  
+* Level 1: Resources  
+* Level 0: The Swap of POX  
+
+## Level 0: Swamp of POX  
+
+* POX - Plain old xml  
+* Uses implementing protocol as a transport protocol   
+* Typically uses one URI and one kind of method  
+* Example - RPC, SOAP, XML-RPC  
+
+## Level 1: Resources  
+
+* Uses Multiple URIs to identify specific resources  
+* Still uses a single method (ie GET)  
+
+## Level 2: HTTP Verbs  
+
+* HTTP Verbs are used with URIs for desired actions  
+    * GET /products/1234 - to return data for product 1234  
+    * PUT /products/1234 (with XML body) to update data for product 1234  
+    * DELETE /products/1234 to delete product 1234  
+* MOST common in practical use  
+
+## Level 3: Hypermedia controls  
+
+* Representation now contains URIs which may be useful to consumers  
+* Helps client developers explore the resource  
+* Spring provides an implementation of HATEOS  
+
+## Summary  
+
+* Level 1 - breaks large service into distinct URIs  
+* Level 2 - Introduces Verbs to implement actions  
+* Level 3 - provides discoverability, making the API more self documenting.  
+
+
+## Introduction to MapStruct  
+
+* MapStruct is a code generator for Java bean mapping.  
+    * Helps reduce coding for type conversions.  
+    * When dealing with REST services, a common use case is to expose API data using DTOs  
+        * DTO - Data Transfer Object  
+* Like Project Lombok, MapStruct is annotation based processor plugged into the Java compiler  
+* From interfaces you declare, MapStruct will generate code at build time.  
+
+
+## MapStruct - Example  
+
+```java
+public class Car {
+    private String make;
+    private int numberOfSeats;
+    private CarType type;
+    // constructor, getters, setters etc.  
+}
+```
+
+```java
+public class CarDto {
+    private String make;
+    private int seatCount;
+    private String type;
+    // constructor, getters, setters etc.  
+}
+```
+
+```java
+@Mapper 
+public interface CarMapper {
+    CarMapper INSTANCE = Mappers.getMapper(CarMapper.class);
+
+    @Mapping(source = "numberOfSeats", target = "seatCount")
+    CarDto carToCarDto(Car car); 
+}
+```
+
+
+```java
+@IllegalThreadStateException
+public void shouldMapCarToDto() {
+    // given
+    Car car = new Car("Morris", 5, CarType.SEDAN);
+
+    // when 
+    CarDto carDto = CarMapper.INSTANCE.carToCarDto(car);
+
+    // then  
+    assertThat(carDto).isNotNull();
+    assertThat(carDto.getMake()).isEqualTo("Morris");
+    assertThat(carDto.getSeatCount()).isEqualTo(5);
+    assertThat(carDto.getType()).isEqualTo("SEDAN");
+}
+```
+
+## FAQ MapStruct  
+
+* Can MapStruct be used with Project Lombok?  
+    * Yes  
+* Are Java 8 Streams Supported?     
+    * Yes  
+
+
+## Swagger  
+
+* An open source software framework backed bu a large ecosystem of tools that helps developers design, build, document, and consume RESTful Web services.  
+* The goal of Swagger is to define a standard, language agnostic interface to REST APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection
+
+* Swagger is more than Documentation  
+* Swagger is a Specification  
+* JSON for Metadata  
+* JSON for API Definition  
+* JSON for Schema for the Model Specification  
+
+* The Swagger Specification is Machine Readable  
+* Also is Language Agnostic  
+* Swagger is supported for most popular server side and client side languages.  
+
+
+## REST vs SOAP  
+
+* Prior to RESTful APIs, SOAP web services were vey popular  
+* A cornerstone of SOAP is the WSDL  
+    * Web Service Description Language  
+* WSDL is an XML document, describing a web service  
+* Can also be thought of as a 'contract'  
+* There is not formal WSDL for RESTful APIs. Hence Swagger  
+
+
+## The Swagger Eco System  
+
+* Swagger UI - HTML, Javascript and CSS componentes to dynamically generate documentation from a Swagger Compliant API.  
+* Swagger Editor - Edit API Specifications in YAML and preview documentation real time  
+* Swagger Codegen - Create clinet libraries and server stubs from a Swagger definition  
+
+## The Swagger Specification  
+
+* The Swagger Specification can be JSON or YAML  
+* Field names are case sensitive  
+* Data types are based on JSON-Schema  
+* Models are described using Schema Object, of JSON Schema  
+* Swagger 2 uses JSON Schema Draft 4  
+
+```swagger
+swagger: '2.0'
+info:
+    version: 1.0.0
+    title: Simple example API  
+    description: An API to illustrate Swagger  
+path:
+    /list:
+      get:
+        description: Returns a list of stuff
+        responses:
+            200:
+                description: Successful Response  
+```
+
+## OpenAPI Specification  
+
+* Swagger Specification aka:  
+    * Swagger RESTful API Documentation Specification
+* With Swagger 2.0, the Swagger RESTful API Documentation Specification Became Known as:  
+    * OpenAPI Specification  
