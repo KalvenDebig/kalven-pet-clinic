@@ -1405,3 +1405,149 @@ path:
     * Swagger RESTful API Documentation Specification
 * With Swagger 2.0, the Swagger RESTful API Documentation Specification Became Known as:  
     * OpenAPI Specification  
+
+## Content Negotiating View Resolver  
+
+* Used by Spring MVC to determine view handler to use  
+* Auto Configured by Spring Boot  
+* The Content Negotiating View Resolver will determine the view to use to render the data of the model to the client  
+
+
+## Content Type  
+
+* View to use is determined by Content Type in Http Header  
+    * application/json, application/xml, text/html  
+* If view for requested Content Type is not found. HTTP Status 406 Not Acceptable is returned  
+
+
+## Spring REST Docs  
+
+* A tool for generating API documentation  
+* Spring REST Docs hooks into controller tests to generate documentation snippets  
+* The snippets are then assembled into final documentation via Asciidoctor  
+* Test Clients supported:  
+    * Spring MVC Test  
+    * WebTestClient(Webflux)  
+    * REST Assured 
+
+## Test Framework Supported  
+
+* Spring REST Docs supports the following testing frameworks:  
+    * JUnit 5  
+    * JUnit 4  
+    * Spock  
+    * Test NG(additional configuration required)  
+
+## Default Snippets  
+
+* curl-request  
+* http-request  
+* http-response  
+* httpie - request  
+* request-body  
+* response-body  
+
+
+## What is JMS  
+
+* Java Messaging Service  
+* JMS is a Java Api which allows a Java Application to send a message to another application  
+    * Generally the other application is a Java application - but not always  
+* JMS is a standard Java API which requires an underlying implementation to be provided   
+    * Much like JPA - where JPA is the API standard, and Hibernate is the implementation  
+* JMS is highly scalable and allows you to loosely couple applications using asynchronous messaging  
+
+
+## Why Use JMS over REST?  
+
+* JMS is a true messaging service  
+* Asynchronous - send and forget  
+* Greater through put - the HTTP protocol is slow comparatively  
+    * JMS protocols are VERY performant  
+* Flexibility in messaging delivery - Deliver to one or many consumers  
+* Security - JMS has a very robust security  
+* Reliability - Can guarantee message delivery  
+
+
+## Types of Messaging  
+
+* Point to Point  
+    * Message is queued and delivered to one consumer  
+    * Can have multiple consumers - but message will be delivered only ONCE  
+    * Consumers connnect to a queue  
+* Publish/Subscribe  
+    * Message is delivered to one or more subscribers  
+    * Subscribers will subscribe to a topic, then recive a copy of all messages sent to the topic  
+
+## Key Terms  
+
+* JMS Provider - JMS Implementation  
+* JMS Client - Application which sends to receives messages from the JMS provider  
+* JMS Producer or Publisher - JMS Client which sends messages  
+* JMS Consumer or Subscriber - JMS Client which receives messages  
+* JMS Message - the entity of data sent
+* JMS Queue - Queue for point to point messages  
+* JMS Topic - Similar to a queue - but for publish and subscribe  
+
+
+## JMS Message  
+
+* A JMS Message contains three parts:  
+    * Header - contains meta data about the message  
+    * Properties - Message properties are in 3 sections  
+        * Application - From Java Application sending message  
+        * Provider - Used by the JMS provider and are implementation specific  
+        * Standard Properties - Defined by the JMS API - Might not be supported by the provider  
+    * Payload - the message itself  
+
+## JMS Header Properties  
+
+* JMSCorrelationID - String value, typically a UUID. Set by application, often used to trace a message through multiple consumers.  
+* JMSExpires - Long - zeros, does not expire. Else, time when message will expire and be removed from the queue  
+* JMSMessageID - String value, typically set by the JMS Provider  
+* JMSPriority - Integer - Priority of the message  
+* JMSTimestamp - Long - Time message was sent  
+
+* JMSType - String - The type of the message  
+* JMSReplyTo - Queue or topic which sender is expecting replies  
+* JMSRedelivery - Boolean - Has message been re-delivered?  
+* JMSDeliveryMode - Integer, set by JMS Provider for delivery mode  
+    * Persistent(Default) - JMS Provider should make best effor to deliver message  
+    * Non-Persistent - Occasional message lost is acceptable
+
+* JSMXUserId - (String) User Id sending message. Set by JMS Provider  
+* JMSXAppId - (String) Id of the application sending the message. Set by JMS Provider.  
+* JMSDeliveryCount - (int) Number of delivery attempts. Set by JMS Provider  
+* JMSXGroupID - (String) The message group which the message is part of. Set by Client  
+* JMSXGroupSeq - (int) Sequence number of message in group. Set by Client  
+* JMSXProducerTDIX - (String) Transaction id when message was produced. Set by JMS Producer.  
+
+* JSMXConsumerTXID - (String) Transaction id when the message was consumed. Set by JMS Provider  
+* JMSXRcvTimestamp - (Long) Timestamp when message delivered to customer. Set by JMS Provider  
+* JMSXState - (Int) State of the JMS Message. Set by JMS Provider.  
+
+
+## JMS Custom Properties  
+
+* The JMS Client can set custom properties on messages  
+* Properties are set as key/value pairs (String, value)  
+* Values must be one of:  
+    * String, boolean, byte, double, float, int, short, long or Object  
+
+## JMS Provider Properties  
+
+* The JMS Client can also set JMS Provider Specific properties  
+* These properties are set as JMS_(<provider name>)  
+* JMS Provider specific properties allow the client to utilize features specific to the JMS Provider  
+* Refer to documentation of your selected JMS Provider for details  
+
+
+## JMS Message Types  
+
+* Message - Just a message, no payload, oftern used to notify about events.  
+* BytesMessage - Payload is an array of bytes  
+* TextMessage - Message is stored as a string (Often JSON or XML)  
+* StreamMessage - sequence of Java primitives  
+* MapMessage - message is name value pairs  
+* ObjectMessage - message is a serialized Java object  
+
